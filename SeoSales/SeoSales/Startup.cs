@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SeoSales.Proxies;
+using SeoSales.Services;
 
 namespace SeoSales
 {
@@ -26,6 +28,9 @@ namespace SeoSales
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddTransient<ISearchResultsAnalysisService, SearchResultsAnalysisService>();
+            services.AddTransient<ISearchEngineParsingServiceProxy, SearchEngineParsingServiceProxy>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

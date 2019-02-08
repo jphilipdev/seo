@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeoSales", "SeoSales\SeoSales.csproj", "{2B4C77FB-30AA-4DFF-85E5-5F4730A7343D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeoSales.Dtos", "SeoSales.Dtos\SeoSales.Dtos.csproj", "{16C3D9A5-DC19-4473-B64E-A08133355315}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2B4C77FB-30AA-4DFF-85E5-5F4730A7343D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B4C77FB-30AA-4DFF-85E5-5F4730A7343D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B4C77FB-30AA-4DFF-85E5-5F4730A7343D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16C3D9A5-DC19-4473-B64E-A08133355315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16C3D9A5-DC19-4473-B64E-A08133355315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16C3D9A5-DC19-4473-B64E-A08133355315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16C3D9A5-DC19-4473-B64E-A08133355315}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
