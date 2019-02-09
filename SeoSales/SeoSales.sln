@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchResultsAnalysis", "Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchResultsAnalysis.Dtos", "SeoSales.Dtos\SearchResultsAnalysis.Dtos.csproj", "{16C3D9A5-DC19-4473-B64E-A08133355315}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeoSales.Tests", "SeoSales.Tests\SeoSales.Tests.csproj", "{A7FE9D6E-ECF7-4250-98F0-9A9DD434AD9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchResultsAnalysis.Tests", "SeoSales.Tests\SearchResultsAnalysis.Tests.csproj", "{A7FE9D6E-ECF7-4250-98F0-9A9DD434AD9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchEngineParsing.Dtos", "SearchEngineParsing.Dtos\SearchEngineParsing.Dtos.csproj", "{9731826F-C4C6-49FF-94A0-C644DD456FDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchEngineParsing.Dtos", "SearchEngineParsing.Dtos\SearchEngineParsing.Dtos.csproj", "{9731826F-C4C6-49FF-94A0-C644DD456FDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

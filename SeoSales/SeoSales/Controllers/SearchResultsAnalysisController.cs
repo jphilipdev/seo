@@ -14,6 +14,13 @@ namespace SearchResultsAnalysis.Controllers
             _searchResultsAnalysisService = searchResultsAnalysisService;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok();
+        }
+
+        [HttpPost]
         public IActionResult Post([FromBody] SearchResultsAnalysisRequest request)
         {
             var response = _searchResultsAnalysisService.GetSearchResults(request);
