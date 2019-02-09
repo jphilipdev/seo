@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 export default class FetchData extends Component {
-  displayName = FetchData.name
 
   constructor(props) {
     super(props);

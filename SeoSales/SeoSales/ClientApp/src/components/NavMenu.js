@@ -5,7 +5,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import './NavMenu.css';
 
 export class NavMenu extends Component {
-  displayName = NavMenu.name
 
   render() {
     return (

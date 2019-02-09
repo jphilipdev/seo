@@ -1,15 +1,17 @@
 import { LOAD_SEARCH_RESULTS_SUCCESS } from '../actions/constants';
 
 const initialState = {
-  results: []
+  googleSearchKeywords: 'test',
+  googleResults: [],
+  otherResults: [],
 };
 
-const resultsReducer = (state = initialState, action) => {
+const searchReducer = (state = initialState, action) => {
   switch(action.type) {
     case LOAD_SEARCH_RESULTS_SUCCESS: {
       return {
         ...state,
-        results: [...action.results]
+        googleResults: [...action.results]
       }
     }
 
@@ -18,4 +20,4 @@ const resultsReducer = (state = initialState, action) => {
   }
 };
 
-export default resultsReducer;
+export default searchReducer;

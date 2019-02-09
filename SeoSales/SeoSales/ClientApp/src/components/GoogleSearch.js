@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class GoogleResults extends Component {
+export default class GoogleSearch extends Component {
 
   constructor(props) {
     super(props);
