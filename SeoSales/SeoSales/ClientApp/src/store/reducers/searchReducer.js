@@ -1,18 +1,18 @@
-import { LOAD_SEARCH_RESULTS_SUCCESS } from '../actions/constants';
+import { GOOGLE_LOAD_SEARCH_RESULTS_SUCCESS } from '../actions/constants';
 
 const initialState = {
   googleSearchKeywords: 'test',
-  googleResults: [],
+  googleResults: ['a'],
   otherResults: [],
 };
 
 const searchReducer = (state = initialState, action) => {
   switch(action.type) {
-    case LOAD_SEARCH_RESULTS_SUCCESS: {
+    case GOOGLE_LOAD_SEARCH_RESULTS_SUCCESS: {
       return {
         ...state,
-        googleResults: [...action.results]
-      }
+        googleResults: [...action.payload]
+      };
     }
 
     default: 

@@ -11,6 +11,10 @@ export default class GoogleSearch extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.search('a', 'b', 'c');
+  }
+
   onChange = event => (
     this.setState({
       [event.target.name]: event.target.value
@@ -22,7 +26,7 @@ export default class GoogleSearch extends Component {
 
     return (
       <div>
-        <h1>Google Results</h1>
+        <h1>Google Results {this.props.googleResults.length}</h1>
 
         <p>Enter search keywords and the URL to match</p>
 
