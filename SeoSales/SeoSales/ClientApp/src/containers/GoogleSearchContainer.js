@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { google } from '../store/selectors/searchSelectors';
-import { search } from '../store/thunks/searchThunks';
+import { searchGoogle } from '../store/thunks/searchThunks';
 import GoogleSearch from '../components/GoogleSearch';
 
 const mapStateToProps = state => ({
@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  search
+  searchGoogle
 }, dispatch)
 
 export default connect(

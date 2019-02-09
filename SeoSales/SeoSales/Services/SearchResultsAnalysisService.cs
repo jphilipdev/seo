@@ -1,6 +1,10 @@
-﻿using SearchResultsAnalysis.Dtos;
+﻿using Microsoft.Extensions.Configuration;
+using SearchEngineParsing.Dtos;
+using SearchResultsAnalysis.Configuration;
+using SearchResultsAnalysis.Dtos;
 using SearchResultsAnalysis.Exceptions;
 using SearchResultsAnalysis.Proxies;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SearchResultsAnalysis.Services
@@ -13,10 +17,12 @@ namespace SearchResultsAnalysis.Services
     public class SearchResultsAnalysisService : ISearchResultsAnalysisService
     {
         private readonly ISearchEngineParsingServiceProxy _searchEngineParsingServiceProxy;
+        private readonly IConfiguration _configuration;
 
-        public SearchResultsAnalysisService(ISearchEngineParsingServiceProxy searchEngineParsingServiceProxy)
+        public SearchResultsAnalysisService(ISearchEngineParsingServiceProxy searchEngineParsingServiceProxy, IConfiguration configuration)
         {
             _searchEngineParsingServiceProxy = searchEngineParsingServiceProxy;
+            _configuration = configuration;
         }
 
         public SearchResultsAnalysisResponse GetSearchResults(SearchResultsAnalysisRequest request)
@@ -59,15 +65,28 @@ namespace SearchResultsAnalysis.Services
             }
         }
 
-        private SearchResultsAnalysisResponse AnalyseResponse(SearchResultsAnalysisRequest request, SearchEngineParsing.Dtos.SearchEngineParsingResponse parsingResponse)
+        private SearchResultsAnalysisResponse AnalyseResponse(SearchResultsAnalysisRequest request, SearchEngineParsingResponse parsingResponse)
         {
-            var matchedResults = parsingResponse.Results.Where(p => p.Result == request.UrlToMatch).Select(p => p.Position).ToList();
-            if (matchedResults.Any())
+            var filteredResults = FilterResults(request, parsingResponse);
+            var limitedResults = LimitResults(filteredResults);
+
+            if (limitedResults.Any())
             {
-                return new SearchResultsAnalysisResponse(string.Join(", ", matchedResults));
+                return new SearchResultsAnalysisResponse(string.Join(", ", limitedResults));
             }
 
             return new SearchResultsAnalysisResponse("0");
+        }        
+
+        private List<int> FilterResults(SearchResultsAnalysisRequest request, SearchEngineParsingResponse parsingResponse)
+        {
+            return parsingResponse.Results.Where(p => p.Result == request.UrlToMatch).Select(p => p.Position).ToList();
+        }
+
+        private List<int> LimitResults(List<int> filteredResults)
+        {
+            var maxResultPosition = _configuration.GetValue<int>(Constants.Config.MaxResultPosition);
+            return filteredResults.Where(p => p <= maxResultPosition).ToList();
         }
     }
 }
