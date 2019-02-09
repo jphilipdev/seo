@@ -10,9 +10,13 @@ const TextInput = styled.input`
   margin-left: ${baseline(1)};
 `;
 
-const Error = styled.div`
+export const Error = styled.div`
   margin-top: ${baseline(1)};
   color: ${colours.errorRed};
+`;
+
+export const ResultsContainer = styled.div`
+  border: 1px solid ${colours.lightGrey};
 `;
 
 export default class GoogleSearch extends Component {
@@ -49,14 +53,14 @@ export default class GoogleSearch extends Component {
 
         <SearchForm>
           <div>
-            <label for='keywords'>Keywords</label>
+            <label htmlFor='keywords'>Keywords</label>
             <TextInput type='text' name='keywords' value={keywords} onChange={this.onChange} />
           </div>
           <div>
-            <label for='urlToMatch'>URL to Match</label>
+            <label htmlFor='urlToMatch'>URL to Match</label>
             <TextInput type='text' name='urlToMatch' value={urlToMatch} onChange={this.onChange} />
           </div>
-          <button onClick={this.getSearchResults}>Search</button>
+          <button className="btn btn-primary" onClick={this.getSearchResults}>Search</button>
 
           {googleSearchError &&
             <Error>{googleSearchError}</Error>
@@ -65,11 +69,11 @@ export default class GoogleSearch extends Component {
         </SearchForm>
 
         {googleResults &&
-          <div>
+          <ResultsContainer>
             <h2>Analysis Results</h2>
             <p>Matching results found at the following search result positions:</p>
             <p>{googleResults}</p>
-          </div>
+          </ResultsContainer>
         }
       </div>
     );

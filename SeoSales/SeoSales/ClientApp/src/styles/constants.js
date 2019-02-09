@@ -13,5 +13,6 @@ export const breakpoint = {
 };
 
 export const colours = {
-  errorRed: '#c80a00'
+  errorRed: '#c80a00',
+  lightGrey: '#e9e9e9'
 };

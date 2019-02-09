@@ -50,18 +50,18 @@ export default class OtherSearch extends Component {
 
         <SearchForm>
           <div>
-            <label for='targetSearchEngineUrl'>Search Engine</label>
+            <label htmlFor='targetSearchEngineUrl'>Search Engine</label>
             <TextInput type='text' name='targetSearchEngineUrl' value={targetSearchEngineUrl} onChange={this.onChange} />
           </div>
           <div>
-            <label for='keywords'>Keywords</label>
+            <label htmlFor='keywords'>Keywords</label>
             <TextInput type='text' name='keywords' value={keywords} onChange={this.onChange} />
           </div>
           <div>
-            <label for='urlToMatch'>URL to Match</label>
+            <label htmlFor='urlToMatch'>URL to Match</label>
             <TextInput type='text' name='urlToMatch' value={urlToMatch} onChange={this.onChange} />
           </div>
-          <button onClick={this.getSearchResults}>Search</button>
+          <button className="btn btn-primary" onClick={this.getSearchResults}>Search</button>
 
           {otherSearchError &&
             <Error>{otherSearchError}</Error>
