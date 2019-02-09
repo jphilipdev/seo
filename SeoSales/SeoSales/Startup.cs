@@ -32,6 +32,8 @@ namespace SearchResultsAnalysis
                 configuration.RootPath = "ClientApp/build";
             });
 
+            services.AddMemoryCache();
+
             services.AddTransient<ISearchResultsAnalysisService, SearchResultsAnalysisService>();
             //services.AddTransient<ISearchEngineParsingServiceProxy, SearchEngineParsingServiceProxy>();
             services.AddTransient<ISearchEngineParsingServiceProxy, RandomDataSearchEngineParsingServiceProxy>();

@@ -5,6 +5,7 @@
         public static class Config
         {
             public const string MaxResultPosition = "Settings:MaxResultPosition";
+            public const string ResultsCacheTimeInSeconds = "Settings:ResultsCacheTimeInSeconds";
         }
 
         public static class ErrorType

@@ -6,7 +6,7 @@ export default class GoogleSearch extends Component {
     super(props);
 
     this.state = {
-      keywords: '',
+      keywords: 'e-settlements',
       urlToMatch: 'http://www.sympli.com.au'
     }
   }

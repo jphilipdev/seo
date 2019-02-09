@@ -1,9 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using SearchEngineParsing.Dtos;
 using SearchResultsAnalysis.Configuration;
 using SearchResultsAnalysis.Dtos;
 using SearchResultsAnalysis.Exceptions;
 using SearchResultsAnalysis.Proxies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,19 +20,31 @@ namespace SearchResultsAnalysis.Services
     {
         private readonly ISearchEngineParsingServiceProxy _searchEngineParsingServiceProxy;
         private readonly IConfiguration _configuration;
+        private readonly IMemoryCache _memoryCache;
 
-        public SearchResultsAnalysisService(ISearchEngineParsingServiceProxy searchEngineParsingServiceProxy, IConfiguration configuration)
+        public SearchResultsAnalysisService(ISearchEngineParsingServiceProxy searchEngineParsingServiceProxy, IConfiguration configuration, IMemoryCache memoryCache)
         {
             _searchEngineParsingServiceProxy = searchEngineParsingServiceProxy;
             _configuration = configuration;
+            _memoryCache = memoryCache;
         }
 
         public SearchResultsAnalysisResponse GetSearchResults(SearchResultsAnalysisRequest request)
         {
             ValidateRequest(request);
 
-            var parsingResponse = _searchEngineParsingServiceProxy.GetSearchResults(request);
+            var cachedResult = _memoryCache.Get<string>(GetCacheKey(request));
+            if (cachedResult == null)
+            {
+                return GetSourceResult(request);
+            }
 
+            return new SearchResultsAnalysisResponse(cachedResult);
+        }
+
+        private SearchResultsAnalysisResponse GetSourceResult(SearchResultsAnalysisRequest request)
+        {
+            var parsingResponse = _searchEngineParsingServiceProxy.GetSearchResults(request);
             return AnalyseResponse(request, parsingResponse);
         }
 
@@ -70,12 +84,11 @@ namespace SearchResultsAnalysis.Services
             var filteredResults = FilterResults(request, parsingResponse);
             var limitedResults = LimitResults(filteredResults);
 
-            if (limitedResults.Any())
-            {
-                return new SearchResultsAnalysisResponse(string.Join(", ", limitedResults));
-            }
+            var formattedResult = FormatResult(limitedResults);
 
-            return new SearchResultsAnalysisResponse("0");
+            CacheResult(request, formattedResult);
+
+            return new SearchResultsAnalysisResponse(formattedResult);
         }        
 
         private List<int> FilterResults(SearchResultsAnalysisRequest request, SearchEngineParsingResponse parsingResponse)
@@ -87,6 +100,27 @@ namespace SearchResultsAnalysis.Services
         {
             var maxResultPosition = _configuration.GetValue<int>(Constants.Config.MaxResultPosition);
             return filteredResults.Where(p => p <= maxResultPosition).ToList();
+        }
+
+        private string FormatResult(List<int> limitedResults)
+        {
+            if (limitedResults.Any())
+            {
+                return string.Join(", ", limitedResults);
+            }
+
+            return "0";
+        }
+
+        private string GetCacheKey(SearchResultsAnalysisRequest request)
+        {
+            return $"{request.TargetSearchEngineUrl}:{request.Keywords}:{request.UrlToMatch}";
+        }
+
+        private void CacheResult(SearchResultsAnalysisRequest request, string formattedResult)
+        {
+            var resultsCacheTimeInSeconds = _configuration.GetValue<int>(Constants.Config.ResultsCacheTimeInSeconds);
+            _memoryCache.Set(GetCacheKey(request), formattedResult, TimeSpan.FromSeconds(resultsCacheTimeInSeconds));
         }
     }
 }
