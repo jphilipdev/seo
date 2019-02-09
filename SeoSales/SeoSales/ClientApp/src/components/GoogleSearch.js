@@ -23,7 +23,7 @@ export default class GoogleSearch extends Component {
   }
 
   render() {
-    const { googleResults } = this.props;
+    const { googleResults, googleSearchError } = this.props;
     const { keywords, urlToMatch } = this.state;
 
     return (
@@ -37,10 +37,15 @@ export default class GoogleSearch extends Component {
 
         <button onClick={this.getSearchResults}>Search</button>
 
+        {googleSearchError && 
+          <div className='server-error'>{googleSearchError}</div>
+        }
+
         {googleResults && 
           <div>
             <h2>Analysis Results</h2>
-            <div>{googleResults}</div>
+            <p>Matching results found at the following search result positions:</p>
+            <p>{googleResults}</p>
           </div>
         }
       </div>

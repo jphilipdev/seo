@@ -1,8 +1,8 @@
-import { GOOGLE_LOAD_SEARCH_RESULTS_SUCCESS } from '../actions/constants';
+import { GOOGLE_LOAD_SEARCH_RESULTS_SUCCESS, GOOGLE_LOAD_SEARCH_RESULTS_FAILURE } from '../actions/constants';
 
 const initialState = {
-  googleSearchKeywords: 'test',
   googleResults: null,
+  googleSearchError: null,
   otherResults: null,
 };
 
@@ -11,7 +11,16 @@ const searchReducer = (state = initialState, action) => {
     case GOOGLE_LOAD_SEARCH_RESULTS_SUCCESS: {
       return {
         ...state,
-        googleResults: action.payload.results
+        googleResults: action.payload.results,
+        googleSearchError: null
+      };
+    }
+
+    case GOOGLE_LOAD_SEARCH_RESULTS_FAILURE: {
+      return {
+        ...state,
+        googleResults: null,
+        googleSearchError: action.payload.ErrorMessage
       };
     }
 

@@ -1,11 +1,12 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { google } from '../store/selectors/searchSelectors';
+import { googleResults, googleSearchError } from '../store/selectors/searchSelectors';
 import { searchGoogle } from '../store/thunks/searchThunks';
 import GoogleSearch from '../components/GoogleSearch';
 
 const mapStateToProps = state => ({
-  googleResults: google(state)
+  googleResults: googleResults(state),
+  googleSearchError: googleSearchError(state)
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
