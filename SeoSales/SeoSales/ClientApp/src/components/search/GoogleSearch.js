@@ -1,23 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { baseline, colours } from '../styles/constants';
-
-const SearchForm = styled.div`
-  margin-bottom: ${baseline(8)};
-`;
-
-const TextInput = styled.input`
-  margin-left: ${baseline(1)};
-`;
-
-export const Error = styled.div`
-  margin-top: ${baseline(1)};
-  color: ${colours.errorRed};
-`;
-
-export const ResultsContainer = styled.div`
-  border: 1px solid ${colours.lightGrey};
-`;
+import SearchForm from './shared/SearchForm';
+import TextInput from './shared/TextInput';
+import Error from './shared/Error';
+import ResultsContainer from './shared/ResultsContainer';
 
 export default class GoogleSearch extends Component {
 

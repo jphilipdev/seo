@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import { baseline, colours } from '../styles/constants';
-
-const SearchForm = styled.div`
-  margin-bottom: ${baseline(8)};
-`;
-
-const TextInput = styled.input`
-  margin-left: ${baseline(1)};
-`;
-
-const Error = styled.div`
-  margin-top: ${baseline(1)};
-  color: ${colours.errorRed};
-`;
+import SearchForm from './shared/SearchForm';
+import TextInput from './shared/TextInput';
+import Error from './shared/Error';
+import ResultsContainer from './shared/ResultsContainer';
 
 export default class OtherSearch extends Component {
 
@@ -70,11 +59,11 @@ export default class OtherSearch extends Component {
         </SearchForm>
 
         {otherResults &&
-          <div>
+          <ResultsContainer>
             <h2>Analysis Results</h2>
             <p>Matching results found at the following search result positions:</p>
             <p>{otherResults}</p>
-          </div>
+          </ResultsContainer>
         }
       </div>
     );

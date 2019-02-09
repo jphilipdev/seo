@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import GoogleSearch, { Error, ResultsContainer } from './GoogleSearch';
+import GoogleSearch from './GoogleSearch';
+import Error from './shared/Error';
+import ResultsContainer from './shared/ResultsContainer';
 
 const setup = propsOverrides => {
   const props = {
