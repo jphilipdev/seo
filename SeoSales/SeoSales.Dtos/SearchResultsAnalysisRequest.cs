@@ -2,13 +2,15 @@
 {
     public class SearchResultsAnalysisRequest
     {
-        public SearchResultsAnalysisRequest(string searchEngineUrl, string keywords)
+        public SearchResultsAnalysisRequest(string targetSearchEngineUrl, string keywords, string urlToMatch)
         {
-            SearchEngineUrl = searchEngineUrl;
+            TargetSearchEngineUrl = targetSearchEngineUrl;
             Keywords = keywords;
+            UrlToMatch = urlToMatch;
         }
 
-        public string SearchEngineUrl { get; }
+        public string TargetSearchEngineUrl { get; }
         public string Keywords { get; }
+        public string UrlToMatch { get; }
     }
 }

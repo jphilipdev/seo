@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SearchResultsAnalysis.Dtos"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeoSales.Tests", "SeoSales.Tests\SeoSales.Tests.csproj", "{A7FE9D6E-ECF7-4250-98F0-9A9DD434AD9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchEngineParsing.Dtos", "SearchEngineParsing.Dtos\SearchEngineParsing.Dtos.csproj", "{9731826F-C4C6-49FF-94A0-C644DD456FDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A7FE9D6E-ECF7-4250-98F0-9A9DD434AD9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7FE9D6E-ECF7-4250-98F0-9A9DD434AD9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7FE9D6E-ECF7-4250-98F0-9A9DD434AD9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9731826F-C4C6-49FF-94A0-C644DD456FDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9731826F-C4C6-49FF-94A0-C644DD456FDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9731826F-C4C6-49FF-94A0-C644DD456FDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9731826F-C4C6-49FF-94A0-C644DD456FDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

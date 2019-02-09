@@ -1,4 +1,5 @@
-﻿using SearchResultsAnalysis.Dtos;
+﻿using SearchEngineParsing.Dtos;
+using SearchResultsAnalysis.Dtos;
 using System;
 using System.Net.Http;
 
@@ -6,7 +7,7 @@ namespace SearchResultsAnalysis.Proxies
 {
     public interface ISearchEngineParsingServiceProxy
     {
-        SearchResultsAnalysisResponse GetSearchResults(SearchResultsAnalysisRequest request);
+        SearchEngineParsingResponse GetSearchResults(SearchResultsAnalysisRequest request);
     }
 
     /// <remarks>
@@ -24,7 +25,7 @@ namespace SearchResultsAnalysis.Proxies
             _httpClient = httpClient;
         }
 
-        public SearchResultsAnalysisResponse GetSearchResults(SearchResultsAnalysisRequest request)
+        public SearchEngineParsingResponse GetSearchResults(SearchResultsAnalysisRequest request)
         {
             throw new NotImplementedException();
         }

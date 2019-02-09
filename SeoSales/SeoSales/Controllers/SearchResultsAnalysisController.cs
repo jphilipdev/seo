@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SearchResultsAnalysis.Dtos;
 using SearchResultsAnalysis.Services;
 
 namespace SearchResultsAnalysis.Controllers
@@ -13,10 +14,9 @@ namespace SearchResultsAnalysis.Controllers
             _searchResultsAnalysisService = searchResultsAnalysisService;
         }
 
-        [HttpPost]
-        public IActionResult Post()
+        public IActionResult Post([FromBody] SearchResultsAnalysisRequest request)
         {
-            var response = _searchResultsAnalysisService.GetSearchResults(null);
+            var response = _searchResultsAnalysisService.GetSearchResults(request);
             return Ok(response);
         }
     }

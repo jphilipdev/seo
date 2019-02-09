@@ -1,5 +1,7 @@
 ﻿using SearchResultsAnalysis.Dtos;
+using SearchResultsAnalysis.Exceptions;
 using SearchResultsAnalysis.Proxies;
+using System.Linq;
 
 namespace SearchResultsAnalysis.Services
 {
@@ -19,8 +21,53 @@ namespace SearchResultsAnalysis.Services
 
         public SearchResultsAnalysisResponse GetSearchResults(SearchResultsAnalysisRequest request)
         {
-            var response = _searchEngineParsingServiceProxy.GetSearchResults(request);
-            return response;
+            ValidateRequest(request);
+
+            var parsingResponse = _searchEngineParsingServiceProxy.GetSearchResults(request);
+
+            return AnalyseResponse(request, parsingResponse);
+        }
+
+        private void ValidateRequest(SearchResultsAnalysisRequest request)
+        {
+            ValidateTargetSearchEngineUrl(request);
+            ValidateKeywords(request);
+            ValidateUrlToMatch(request);
+        }
+
+        private void ValidateTargetSearchEngineUrl(SearchResultsAnalysisRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request?.TargetSearchEngineUrl))
+            {
+                throw new TargetSearchEngineUrlNotSuppliedException();
+            }
+        }
+
+        private void ValidateKeywords(SearchResultsAnalysisRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request?.Keywords))
+            {
+                throw new KeywordsNotSuppliedException();
+            }
+        }
+
+        private void ValidateUrlToMatch(SearchResultsAnalysisRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request?.UrlToMatch))
+            {
+                throw new UrlToMatchNotSuppliedException();
+            }
+        }
+
+        private SearchResultsAnalysisResponse AnalyseResponse(SearchResultsAnalysisRequest request, SearchEngineParsing.Dtos.SearchEngineParsingResponse parsingResponse)
+        {
+            var matchedResults = parsingResponse.Results.Where(p => p.Result == request.UrlToMatch).Select(p => p.Position).ToList();
+            if (matchedResults.Any())
+            {
+                return new SearchResultsAnalysisResponse(string.Join(", ", matchedResults));
+            }
+
+            return new SearchResultsAnalysisResponse("0");
         }
     }
 }
