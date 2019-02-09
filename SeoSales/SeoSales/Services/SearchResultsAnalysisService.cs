@@ -19,8 +19,8 @@ namespace SeoSales.Services
 
         public SearchResultsAnalysisResponse GetSearchResults(SearchResultsAnalysisRequest request)
         {
-            _searchEngineParsingServiceProxy.GetSearchResults(request);
-            return null;
+            var response = _searchEngineParsingServiceProxy.GetSearchResults(request);
+            return response;
         }
     }
 }

@@ -30,7 +30,10 @@ namespace SeoSales
             });
 
             services.AddTransient<ISearchResultsAnalysisService, SearchResultsAnalysisService>();
-            services.AddTransient<ISearchEngineParsingServiceProxy, SearchEngineParsingServiceProxy>();
+            //services.AddTransient<ISearchEngineParsingServiceProxy, SearchEngineParsingServiceProxy>();
+            services.AddTransient<ISearchEngineParsingServiceProxy, RandomDataSearchEngineParsingServiceProxy>();
+
+            //services.AddHttpClient<ISearchEngineParsingServiceProxy, SearchEngineParsingServiceProxy>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SeoSales.Dtos;
 using SeoSales.Services;
 
 namespace SeoSales.Controllers
@@ -17,8 +16,8 @@ namespace SeoSales.Controllers
         [HttpPost]
         public IActionResult Post()
         {
-            _searchResultsAnalysisService.GetSearchResults(null);
-            return Ok();
+            var response = _searchResultsAnalysisService.GetSearchResults(null);
+            return Ok(response);
         }
     }
 }

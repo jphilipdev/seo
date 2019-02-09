@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SeoSales.Dtos
+﻿namespace SeoSales.Dtos
 {
     public class SearchResultsAnalysisResponse
     {
+        public SearchResultsAnalysisResponse(string results)
+        {
+            Results = results;
+        }
+
+        public string Results { get; }
     }
 }
