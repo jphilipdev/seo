@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SearchResultsAnalysis.Exceptions.ExceptionHandlers;
+using SearchResultsAnalysis.Exceptions.ExceptionHandlers.Factories;
+using SearchResultsAnalysis.Extensions;
 using SearchResultsAnalysis.Proxies;
 using SearchResultsAnalysis.Services;
 
@@ -33,20 +36,26 @@ namespace SearchResultsAnalysis
             //services.AddTransient<ISearchEngineParsingServiceProxy, SearchEngineParsingServiceProxy>();
             services.AddTransient<ISearchEngineParsingServiceProxy, RandomDataSearchEngineParsingServiceProxy>();
 
+            services.AddTransient<IExceptionHandler, KeywordsNotSuppliedExceptionHandler>();
+            services.AddTransient<IExceptionHandler, TargetSearchEngineUrlNotSuppliedExceptionHandler>();
+            services.AddTransient<IExceptionHandler, UrlToMatchNotSuppliedExceptionHandler>();
+            services.AddTransient<IExceptionHandlerFactory, ExceptionHandlerFactory>();
+
             //services.AddHttpClient<ISearchEngineParsingServiceProxy, SearchEngineParsingServiceProxy>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-            }
+            app.ConfigureExceptionHandler();
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Error");
+            //}
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
