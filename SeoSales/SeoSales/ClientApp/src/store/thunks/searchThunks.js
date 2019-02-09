@@ -1,9 +1,9 @@
 import { post } from '../../util/api';
-import { googleResultsSuccess, googleResultsFailure } from '../actions/searchActions';
+import { googleResultsSuccess, googleResultsFailure, otherResultsSuccess, otherResultsFailure } from '../actions/searchActions';
 
-export const searchGoogle = (targetSearchEngineUrl, keywords, urlToMatch) => dispatch => {
+export const searchGoogle = (keywords, urlToMatch) => dispatch => {
   post('api/searchresultsanalysis', {
-    targetSearchEngineUrl, 
+    targetSearchEngineUrl: 'http://www.google.com', 
     keywords, 
     urlToMatch}
   )
@@ -11,5 +11,18 @@ export const searchGoogle = (targetSearchEngineUrl, keywords, urlToMatch) => dis
     dispatch(googleResultsSuccess(data));
   }).catch(({body}) => {
     body.then(error => dispatch(googleResultsFailure(error)));
+  });
+};
+
+export const searchOther = (targetSearchEngineUrl, keywords, urlToMatch) => dispatch => {
+  post('api/searchresultsanalysis', {
+    targetSearchEngineUrl, 
+    keywords, 
+    urlToMatch}
+  )
+  .then(data => {
+    dispatch(otherResultsSuccess(data));
+  }).catch(({body}) => {
+    body.then(error => dispatch(otherResultsFailure(error)));
   });
 };

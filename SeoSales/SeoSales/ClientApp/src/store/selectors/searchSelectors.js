@@ -11,3 +11,13 @@ export const googleSearchError = createSelector(
   search,
   search => search.googleSearchError
 );
+
+export const otherResults = createSelector(
+  search,
+  search => search.otherResults
+);
+
+export const otherSearchError = createSelector(
+  search,
+  search => search.otherSearchError
+);

@@ -1,9 +1,15 @@
-import { GOOGLE_LOAD_SEARCH_RESULTS_SUCCESS, GOOGLE_LOAD_SEARCH_RESULTS_FAILURE } from '../actions/constants';
+import { 
+  GOOGLE_LOAD_SEARCH_RESULTS_SUCCESS, 
+  GOOGLE_LOAD_SEARCH_RESULTS_FAILURE, 
+  OTHER_LOAD_SEARCH_RESULTS_SUCCESS, 
+  OTHER_LOAD_SEARCH_RESULTS_FAILURE 
+} from '../actions/constants';
 
 const initialState = {
   googleResults: null,
   googleSearchError: null,
   otherResults: null,
+  otherSearchError: null
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -21,6 +27,22 @@ const searchReducer = (state = initialState, action) => {
         ...state,
         googleResults: null,
         googleSearchError: action.payload.ErrorMessage
+      };
+    }
+
+    case OTHER_LOAD_SEARCH_RESULTS_SUCCESS: {
+      return {
+        ...state,
+        otherResults: action.payload.results,
+        otherSearchError: null
+      };
+    }
+
+    case OTHER_LOAD_SEARCH_RESULTS_FAILURE: {
+      return {
+        ...state,
+        otherResults: null,
+        otherSearchError: action.payload.ErrorMessage
       };
     }
 

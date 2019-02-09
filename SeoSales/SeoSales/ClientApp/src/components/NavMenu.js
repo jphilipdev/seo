@@ -24,12 +24,12 @@ export class NavMenu extends Component {
             </LinkContainer>
             <LinkContainer to={'/google'}>
               <NavItem>
-                <Glyphicon glyph='education' /> Google Results
+                <Glyphicon glyph='education' /> Google Search
               </NavItem>
             </LinkContainer>
             <LinkContainer to={'/other'}>
               <NavItem>
-                <Glyphicon glyph='th-list' /> Other Search Engine Results
+                <Glyphicon glyph='th-list' /> Other Search Engines
               </NavItem>
             </LinkContainer>
           </Nav>
