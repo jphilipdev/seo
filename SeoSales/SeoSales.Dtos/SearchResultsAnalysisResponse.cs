@@ -1,4 +1,4 @@
-﻿namespace SeoSales.Dtos
+﻿namespace SearchResultsAnalysis.Dtos
 {
     public class SearchResultsAnalysisResponse
     {

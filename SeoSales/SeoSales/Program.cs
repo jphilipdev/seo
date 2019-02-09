@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace SeoSales
+namespace SearchResultsAnalysis
 {
     public class Program
     {

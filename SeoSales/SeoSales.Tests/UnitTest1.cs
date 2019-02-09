@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SeoSales.Tests
+namespace SearchResultsAnalysis.Tests
 {
     [TestClass]
     public class UnitTest1

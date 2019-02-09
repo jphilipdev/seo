@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SeoSales.Proxies;
-using SeoSales.Services;
+using SearchResultsAnalysis.Proxies;
+using SearchResultsAnalysis.Services;
 
-namespace SeoSales
+namespace SearchResultsAnalysis
 {
     public class Startup
     {

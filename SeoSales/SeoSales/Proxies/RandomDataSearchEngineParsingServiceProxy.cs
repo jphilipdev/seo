@@ -1,9 +1,9 @@
-﻿using SeoSales.Dtos;
+﻿using SearchResultsAnalysis.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SeoSales.Proxies
+namespace SearchResultsAnalysis.Proxies
 {
     public class RandomDataSearchEngineParsingServiceProxy : ISearchEngineParsingServiceProxy
     {

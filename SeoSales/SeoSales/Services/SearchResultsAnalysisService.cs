@@ -1,7 +1,7 @@
-﻿using SeoSales.Dtos;
-using SeoSales.Proxies;
+﻿using SearchResultsAnalysis.Dtos;
+using SearchResultsAnalysis.Proxies;
 
-namespace SeoSales.Services
+namespace SearchResultsAnalysis.Services
 {
     public interface ISearchResultsAnalysisService
     {

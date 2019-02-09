@@ -1,8 +1,8 @@
-﻿using SeoSales.Dtos;
+﻿using SearchResultsAnalysis.Dtos;
 using System;
 using System.Net.Http;
 
-namespace SeoSales.Proxies
+namespace SearchResultsAnalysis.Proxies
 {
     public interface ISearchEngineParsingServiceProxy
     {

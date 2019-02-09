@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SeoSales.Services;
+using SearchResultsAnalysis.Services;
 
-namespace SeoSales.Controllers
+namespace SearchResultsAnalysis.Controllers
 {
     [Route("api/[controller]")]
     public class SearchResultsAnalysisController : Controller
